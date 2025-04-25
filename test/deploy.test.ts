@@ -1,12 +1,12 @@
+import * as exec from "@actions/exec";
 import {
-  ChannelSuccessResult,
   ChannelDeployConfig,
+  ChannelSuccessResult,
   deployPreview,
   deployProductionSite,
   ProductionDeployConfig,
   ProductionSuccessResult,
 } from "../src/deploy";
-import * as exec from "@actions/exec";
 import {
   channelError,
   channelMultiSiteSuccess,
@@ -147,7 +147,7 @@ describe("deploy", () => {
       const deployFlags = args[0][1];
       expect(deployFlags).toContain("deploy");
       expect(deployFlags).toContain("--only");
-      expect(deployFlags).toContain("hosting");
+      expect(deployFlags).toContain("functions");
     });
   });
 });
