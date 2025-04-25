@@ -13,8 +13,8 @@
 # limitations under the License.
 
 name: "Deploy to Firebase Cloud Functions"
-description: "A GitHub Action to deploy to Firebase Hosting"
-author: "Jason Miller (https://github.com/developit) and Firebase"
+description: "A GitHub Action to deploy to Firebase cloud functions inspired by official action"
+author: "Ktoxcon (https://github.com/Ktoxcon)"
 branding:
   icon: "globe"
   color: "blue"
