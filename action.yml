@@ -12,8 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name: "Deploy to Firebase Cloud Functions"
-description: "A GitHub Action to deploy to Firebase cloud functions inspired by official action"
+name: "Firebase Cloud Functions Deploy"
+description: "A GitHub Action to deploy to Firebase cloud functions inspired by official FireBase action"
 author: "Ktoxcon (https://github.com/Ktoxcon)"
 branding:
   icon: "globe"
