@@ -1,43 +1,15 @@
 # 🔥🌎 Firebase Cloud GitHub Action
 
-- Deploys the current state of your GitHub repo to a live channel when the PR is merged.
+- Deploys the current state of your GitHub repo to cloud functions when the PR is merged.
 
 ## Usage
 
-### Deploy to a new preview channel for every PR
-
-Add a workflow (`.github/workflows/deploy-functions.yml`):
-
-```yaml
-name: Deploy to Preview Channel
-
-on:
-  pull_request:
-    # Optionally configure to run only for specific files. For example:
-    # paths:
-    # - "website/**"
-
-jobs:
-  build_and_preview:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      # Add any build steps here. For example:
-      # - run: npm ci && npm run build
-      - uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: "${{ secrets.GITHUB_TOKEN }}"
-          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
-          expires: 30d
-          projectId: your-Firebase-project-ID
-```
-
-### Deploy to your live channel on merge
+### Deploy to cloud functions on merge
 
 Add a workflow (`.github/workflows/deploy-prod.yml`):
 
 ```yaml
-name: Deploy to Live Channel
+name: Deploy to Cloud Functions
 
 on:
   push:
@@ -45,7 +17,7 @@ on:
       - main
     # Optionally configure to run only for specific files. For example:
     # paths:
-    # - "website/**"
+    # - "functions/**"
 
 jobs:
   deploy_live_website:
@@ -54,7 +26,7 @@ jobs:
       - uses: actions/checkout@v4
       # Add any build steps here. For example:
       # - run: npm ci && npm run build
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+      - uses: Ktoxcon/action-cloud-functions-deploy@0.1.0
         with:
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
           projectId: your-Firebase-project-ID
@@ -65,7 +37,7 @@ jobs:
 
 ### `firebaseServiceAccount` _{string}_ (required)
 
-This is a service account JSON key. The easiest way to set it up is to run `firebase init hosting:github`. However, it can also be [created manually](./docs/service-account.md).
+This is a service account JSON key. Instructions in how to create it [here](./docs/service-account.md).
 
 It's important to store this token as an
 [encrypted secret](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets)
@@ -125,9 +97,6 @@ file relative to the root of your repository. Defaults to `.` (the root of your 
 
 The version of `firebase-tools` to use. If not specified, defaults to `latest`.
 
-### `disableComment` _{boolean}_
-
-Disable commenting in a PR with the preview URL.
 
 ## Outputs
 
@@ -153,4 +122,4 @@ A single URL that was deployed to
 
 ![Status: Experimental](https://img.shields.io/badge/Status-Experimental-blue)
 
-This repository is maintained by Googlers but is not a supported Firebase product. Issues here are answered by maintainers and other community members on GitHub on a best-effort basis.
+This repository is was inspired by Googlers but is not a supported Firebase product. Issues here are answered by maintainers and other community members on GitHub on a best-effort basis.
