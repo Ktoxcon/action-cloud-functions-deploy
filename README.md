@@ -20,7 +20,7 @@ on:
     # - "functions/**"
 
 jobs:
-  deploy_live_website:
+  deploy_functions:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
